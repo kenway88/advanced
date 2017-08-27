@@ -31,4 +31,28 @@ class TestController extends Controller
         echo $this->propertyTest;
         echo $this->methodTest();
     }
+
+    public function actionThird()
+    {
+        \Yii::$container->setSingleton('frontend\models\Account');
+        $var = \Yii::createObject('frontend\models\Account');
+        $var2 = \Yii::createObject('frontend\models\Account');
+        $db = \Yii::$app->getDb();
+        $db2 = \Yii::$app->getDb();
+        \Yii::$app->set('test', 'frontend\models\Account');
+        $t1 = \Yii::$app->get('test');
+        $t2 = \Yii::$app->get('test');
+        if ($var === $var2){
+            echo '2';
+        }
+        if($db===$db2)
+        {
+            echo '3';
+        }
+        if($t1===$t2)
+        {
+            echo '4';
+        }
+        exit('ffff');
+    }
 }
