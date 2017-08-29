@@ -492,9 +492,9 @@ class Container extends Component
      */
     public function invoke(callable $callback, $params = [])
     {
-        if (is_callable($callback)) {
+        if (is_callable($callback)) {//函数合法可调用，则解析$params中的依赖参数，调用该函数
             return call_user_func_array($callback, $this->resolveCallableDependencies($callback, $params));
-        } else {
+        } else {//否则直接以$params为参数调用该函数(主要的用途是报错)
             return call_user_func_array($callback, $params);
         }
     }
